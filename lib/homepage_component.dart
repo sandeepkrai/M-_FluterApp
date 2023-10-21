@@ -1,7 +1,10 @@
 import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:flutter/material.dart';
+import 'package:groot/Barcode/barcode_main.dart';
 import 'package:groot/appbar_main.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePageComponent extends StatefulWidget {
   const HomePageComponent({super.key});
@@ -11,6 +14,20 @@ class HomePageComponent extends StatefulWidget {
 }
 
 class _HomePageComponentState extends State<HomePageComponent> {
+  _launchApp() async {
+    // final AndroidIntent intent = AndroidIntent(
+    //   action: 'action_main',
+    //   package: 'com.example.otherapp', // Replace with the correct package name
+    //   category: 'android.intent.category.LAUNCHER',
+    // );
+
+    // if (await intent.canLaunch()) {
+    //   intent.launch();
+    // } else {
+    //   print('The app is not installed on your device');
+    // }
+  }
+
   Map<String, dynamic> user = {
     'profilePictureUrl':
         'https://pixinvent.com/materialize-material-design-admin-template/app-assets/images/user/12.jpg',
@@ -74,139 +91,145 @@ class _HomePageComponentState extends State<HomePageComponent> {
                 ],
               ),
             ),
-            CarouselSlider(
-              options: CarouselOptions(
-                height: 200.0,
-                pageSnapping: false,
-                enlargeCenterPage: true,
-                viewportFraction: 1,
-                autoPlay: true,
-              ),
-              items: [1, 2, 3, 4, 5].map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(
-                          color: const Color.fromARGB(255, 66, 165, 161),
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Row(
-                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.4,
-                              margin: const EdgeInsets.only(left: 20, top: 10),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Container(
-                                    child: Text(
-                                      challenge["name"] + "\n" + getDayName(),
-                                      style: TextStyle(
-                                        fontSize: width * 0.065,
-                                        fontWeight: FontWeight.bold,
-                                        color: const Color.fromARGB(
-                                            255, 239, 184, 18),
+            GestureDetector(
+              onTap: () async {
+                _launchApp();
+              },
+              child: CarouselSlider(
+                options: CarouselOptions(
+                  height: 200.0,
+                  pageSnapping: false,
+                  enlargeCenterPage: true,
+                  viewportFraction: 1,
+                  autoPlay: true,
+                ),
+                items: [1, 2, 3, 4, 5].map((i) {
+                  return Builder(
+                    builder: (BuildContext context) {
+                      return Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                          decoration: BoxDecoration(
+                            color: const Color.fromARGB(255, 66, 165, 161),
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                margin:
+                                    const EdgeInsets.only(left: 20, top: 10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Container(
+                                      child: Text(
+                                        challenge["name"] + "\n" + getDayName(),
+                                        style: TextStyle(
+                                          fontSize: width * 0.065,
+                                          fontWeight: FontWeight.bold,
+                                          color: const Color.fromARGB(
+                                              255, 239, 184, 18),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.only(top: 10),
-                                    child: Text(
-                                      challenge["description"],
-                                      style: const TextStyle(
-                                        fontSize: 15,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    margin: const EdgeInsets.only(top: 10),
-                                    child: Row(
-                                      children: [
-                                        Container(
-                                            child: const Icon(
-                                          Icons.calendar_month_outlined,
+                                    Container(
+                                      margin: const EdgeInsets.only(top: 10),
+                                      child: Text(
+                                        challenge["description"],
+                                        style: const TextStyle(
+                                          fontSize: 15,
                                           color: Colors.white,
-                                        )),
-                                        Container(
-                                          margin:
-                                              const EdgeInsets.only(left: 10),
-                                          child: Text(
-                                            getDateAndMonth(),
-                                            style: TextStyle(
-                                              fontSize: width * 0.05,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        )
-                                      ],
+                                        ),
+                                      ),
                                     ),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.45,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Container(
-                                    width: 100,
-                                    margin: const EdgeInsets.only(
-                                      top: 10,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(50),
-                                      color: Colors.white,
-                                    ),
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                    Container(
+                                      margin: const EdgeInsets.only(top: 10),
+                                      child: Row(
                                         children: [
                                           Container(
-                                            child: const Icon(
-                                              Icons.star,
-                                            ),
-                                          ),
+                                              child: const Icon(
+                                            Icons.calendar_month_outlined,
+                                            color: Colors.white,
+                                          )),
                                           Container(
                                             margin:
                                                 const EdgeInsets.only(left: 10),
                                             child: Text(
-                                              challenge["points"].toString(),
+                                              getDateAndMonth(),
                                               style: TextStyle(
                                                 fontSize: width * 0.05,
                                                 fontWeight: FontWeight.bold,
-                                                color: Colors.black,
+                                                color: Colors.white,
                                               ),
                                             ),
                                           )
-                                        ]),
-                                  ),
-                                  Container(
-                                    child: Image.asset(
-                                      'assets/images/tempo.png',
-                                      width: 130,
-                                      height: 140,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  )
-                                ],
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
                               ),
-                            )
-                          ],
-                        ));
-                  },
-                );
-              }).toList(),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.45,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Container(
+                                      width: 100,
+                                      margin: const EdgeInsets.only(
+                                        top: 10,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50),
+                                        color: Colors.white,
+                                      ),
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              child: const Icon(
+                                                Icons.star,
+                                              ),
+                                            ),
+                                            Container(
+                                              margin: const EdgeInsets.only(
+                                                  left: 10),
+                                              child: Text(
+                                                challenge["points"].toString(),
+                                                style: TextStyle(
+                                                  fontSize: width * 0.05,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            )
+                                          ]),
+                                    ),
+                                    Container(
+                                      child: Image.asset(
+                                        'assets/images/tempo.png',
+                                        width: 130,
+                                        height: 140,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ));
+                    },
+                  );
+                }).toList(),
+              ),
             ),
             Container(
               margin: const EdgeInsets.only(top: 20, left: 10, right: 10),
@@ -245,13 +268,23 @@ class _HomePageComponentState extends State<HomePageComponent> {
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                margin: const EdgeInsets.only(left: 10),
-                                child: Text(
-                                  "Track trip",
-                                  style: TextStyle(
-                                    fontSize: width * 0.04,
-                                    color: Colors.black,
+                              GestureDetector(
+                                onTap: ()async {
+                                  // var result = await BarcodeScanner.scan();
+
+                                  //         print(result.type); // The result type (barcode, cancelled, failed)
+                                  //         print(result.rawContent); // The barcode content
+                                  //         print(result.format); // The barcode format (as enum)
+                                  //         print(result.formatNote);
+                                },
+                                child: Container(
+                                  margin: const EdgeInsets.only(left: 10),
+                                  child: Text(
+                                    "Track trip",
+                                    style: TextStyle(
+                                      fontSize: width * 0.04,
+                                      color: Colors.black,
+                                    ),
                                   ),
                                 ),
                               )

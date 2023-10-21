@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:groot/home_page.dart';
@@ -107,73 +108,137 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 230, 224, 199),
       appBar: AppBar(
-        title: Text('Flutter Login Screen'),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // A text field for the email input
-            TextField(
-              controller: usernameController,
-              decoration: InputDecoration(
-                labelText: 'Username',
-                hintText: 'Enter your Username',
-                border: OutlineInputBorder(),
-              ),
-              keyboardType: TextInputType.emailAddress,
+        title: Text('Login Screen'),
+        centerTitle: true,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color.fromARGB(255, 28, 77, 59),
+                Color.fromARGB(255, 96, 204, 165),
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
             ),
-            SizedBox(height: 16.0),
-            // A text field for the password input
-            TextField(
-              controller: passwordController,
-              decoration: InputDecoration(
-                labelText: 'Password',
-                hintText: 'Enter your password',
-                border: OutlineInputBorder(),
-                // A suffix icon to toggle the password visibility
-                suffixIcon: IconButton(
-                  icon: Icon(obscurePassword
-                      ? Icons.visibility_off
-                      : Icons.visibility),
-                  onPressed: () {
-                    // Change the value of obscurePassword and rebuild the widget
-                    setState(() {
-                      obscurePassword = !obscurePassword;
-                    });
-                  },
+          ),
+        ),
+      ),
+      body: Container(
+        // decoration: BoxDecoration(
+        //   gradient: LinearGradient(
+        //     colors: [
+        //       Color.fromARGB(255, 175, 196, 190),
+        //       Color.fromARGB(255, 177, 209, 198),
+        //     ],
+        //     begin: Alignment.topCenter,
+        //     end: Alignment.bottomCenter,
+        //   ),
+        // ),
+        child: Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // A text field for the email input
+              TextField(
+                controller: usernameController,
+                decoration: InputDecoration(
+                  labelText: 'Username',
+                  hintText: 'Enter your Username',
+                  border: OutlineInputBorder(),
+                ),
+                keyboardType: TextInputType.emailAddress,
+              ),
+              SizedBox(height: 16.0),
+              // A text field for the password input
+              TextField(
+                controller: passwordController,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  hintText: 'Enter your password',
+                  border: OutlineInputBorder(),
+                  // A suffix icon to toggle the password visibility
+                  suffixIcon: IconButton(
+                    icon: Icon(obscurePassword
+                        ? Icons.visibility_off
+                        : Icons.visibility),
+                    onPressed: () {
+                      // Change the value of obscurePassword and rebuild the widget
+                      setState(() {
+                        obscurePassword = !obscurePassword;
+                      });
+                    },
+                  ),
+                ),
+                obscureText: obscurePassword,
+              ),
+              SizedBox(height: 16.0),
+              // A button to perform the login action
+              GestureDetector(
+                onTap: () {
+                  _handleLocationPermission();
+                  _getCurrentPosition();
+                  validateLogin();
+                  AnimatedSnackBar.rectangle(
+                    'Success',
+                    'Login Successful!',
+                    type: AnimatedSnackBarType.success,
+                    brightness: Brightness.light,
+                    duration: Duration(seconds: 2),
+                  ).show(
+                    context,
+                  );
+                  // Navigator.pushReplacement(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => MyHomePage(
+                  //               title: '',
+                  //             )));
+                },
+                child: Container(
+                  height: 60,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromARGB(255, 28, 77, 59),
+                        Color.fromARGB(255, 96, 204, 165),
+                      ],
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                    borderRadius: BorderRadius.circular(16.0),
+                  ),
+                  child: Center(
+                      child: Text(
+                    'Login',
+                    style: TextStyle(fontSize: 24.0, color: Colors.white),
+                  )),
+                  // onPressed: validateLogin,
                 ),
               ),
-              obscureText: obscurePassword,
-            ),
-            SizedBox(height: 16.0),
-            // A button to perform the login action
-            ElevatedButton(
-              child: Text('Login'),
-              // onPressed: validateLogin,
-              onPressed: () {
-                _handleLocationPermission();
-                _getCurrentPosition();
-                // validateLogin();
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => MyHomePage(
-                              title: '',
-                            )));
-              },
-            ),
-            GestureDetector(
-                onTap: () => {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignupScreen()))
-                    },
-                child: Text("Signup")),
-          ],
+              GestureDetector(
+                  onTap: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignupScreen()))
+                      },
+                  child: Container(
+                    margin: EdgeInsets.only(top: 16.0),
+                    child: Align(
+                        alignment: Alignment.centerRight,
+                        child: Text(
+                          "Don't have account? Signup!",
+                          style: TextStyle(
+                            fontSize: 15,
+                            color: Colors.blue,
+                          ),
+                        )),
+                  )),
+            ],
+          ),
         ),
       ),
     );

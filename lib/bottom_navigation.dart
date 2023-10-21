@@ -66,7 +66,7 @@ class _BottomNavigationCustomState extends State<BottomNavigationCustom> {
             ),
           ),
           BottomNavigationBarItem(
-            label: 'Greenway',
+            label: 'Greenway(beta)',
             icon: SvgPicture.asset(
               'assets/images/icon_location.svg',
             ),

@@ -23,11 +23,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // get today day name
 
-  void _onItemTapped(int index) {
+  void _onItemTapped(int index) async {
+    
     setState(() {
       _currentIndex = index;
     });
-  }
+  } 
 
   int _currentIndex = 0;
   static List<Widget> _widgetOptions = <Widget>[
@@ -97,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   BottomNavigationBarItem(
-                    label: 'Greenway',
+                    label: '(beta)Greenway',
                     icon: SvgPicture.asset(
                       'assets/images/icon_location.svg',
                       color: _currentIndex == 3
@@ -106,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ),
                   BottomNavigationBarItem(
-                    label: 'Edu',
+                    label: 'Social',
                     icon: SvgPicture.asset(
                       'assets/images/icon_reader.svg',
                       color: _currentIndex == 4

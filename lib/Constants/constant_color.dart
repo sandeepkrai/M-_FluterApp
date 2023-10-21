@@ -1,0 +1,1 @@
+var blueColor = 0xff1DA1F2;

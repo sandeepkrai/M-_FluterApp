@@ -36,13 +36,15 @@ class _SignupScreenState extends State<SignupScreen> {
         'password': password.toString(),
         'name': name.toString(),
         'resident_location': location.toString().toLowerCase(),
+        'age': age.toString(),
+        'industry': industry.toString().toLowerCase(),
       }),
       headers: <String, String>{'Content-Type': 'application/json'},
     );
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
     // save
-    if (response.statusCode == 201) {
+    if (response.statusCode == 200) {
       return true;
     } else {
       return false;
@@ -119,6 +121,8 @@ class _SignupScreenState extends State<SignupScreen> {
                   final password = _passwordController.text;
                   final name = _nameController.text;
                   final location = _locationController.text;
+                  final age = _age.text;
+                  final industry = _industry.text;
 
                   // You can add validation and registration logic here
                   // For example, you can call an authentication API or save the data to a database.

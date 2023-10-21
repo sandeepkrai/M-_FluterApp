@@ -5,7 +5,7 @@ class Constants {
   Constants._();
 
   static const kDefaultCameraZoom = 15.0;
-  static const kRouteWidth = 5;
-  static const kRouteColor = Colors.indigo;
+  static const kRouteWidth = 20;
+  static const kRouteColor = Color.fromARGB(255, 12, 229, 92);
   static const kDefaultMarkerSize = Size.square(150);
 }

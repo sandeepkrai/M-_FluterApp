@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "56306796787",
+    "project_id": "pushnotification-aae2a",
+    "storage_bucket": "pushnotification-aae2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56306796787:android:a25d7248e032e80c434f86",
+        "android_client_info": {
+          "package_name": "com.example.groot"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0jvhpolxdcBN2DFf_e5oczhnhQKzUAEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -21,8 +21,12 @@ class AppBarMain extends StatelessWidget {
               color: Colors.white,
             ),
             child: ClipOval(
-              child: Image.network(
-                'https://pixinvent.com/materialize-material-design-admin-template/app-assets/images/user/12.jpg',
+              // child: Image.network(
+              //   'https://pixinvent.com/materialize-material-design-admin-template/app-assets/images/user/12.jpg',
+              //   fit: BoxFit.fill,
+              // ),
+              child: Image.asset(
+                'assets/images/splash.jpg',
                 fit: BoxFit.fill,
               ),
             ),

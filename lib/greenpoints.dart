@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:groot/Shopping/shop.dart';
+import 'package:groot/badges.dart';
 import 'package:groot/bottom_navigation.dart';
+import 'package:groot/home_page.dart';
+import 'package:groot/map.dart';
 import 'package:groot/screenshotshare.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -65,6 +68,38 @@ class _GreenPointsPageState extends State<GreenPointsPage> {
     return SafeArea(
         child: Scaffold(
             backgroundColor: const Color.fromARGB(255, 230, 224, 199),
+            appBar: AppBar(
+              title: Text('GreenPoint'),
+              leading: GestureDetector(
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MyHomePage(
+                                title: '',
+                              )));
+                },
+                child: Container(
+                  margin: EdgeInsets.only(
+                    left: 10,
+                  ),
+                  child: Icon(Icons.arrow_back),
+                ),
+              ),
+              flexibleSpace: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color.fromARGB(255, 28, 77, 59),
+                      Color.fromARGB(255, 147, 228, 198),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
+                ),
+              ),
+              // centerTitle: true,
+            ),
             body: SingleChildScrollView(
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -203,15 +238,23 @@ class _GreenPointsPageState extends State<GreenPointsPage> {
                         Container(
                           child: Image.asset("assets/images/icon_award.png"),
                         ),
-                        Container(
-                          margin: EdgeInsets.only(left: 10),
-                          child: Text("Achievements",
-                              style: TextStyle(
-                                color: Color.fromARGB(255, 15, 68, 50),
-                                fontSize: 20,
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.w700,
-                              )),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => AchievementsPage()));
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(left: 10),
+                            child: Text("Achievements",
+                                style: TextStyle(
+                                  color: Color.fromARGB(255, 15, 68, 50),
+                                  fontSize: 20,
+                                  fontFamily: "Montserrat",
+                                  fontWeight: FontWeight.w700,
+                                )),
+                          ),
                         )
                       ]),
                     ),
