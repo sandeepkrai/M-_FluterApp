@@ -46,6 +46,9 @@ dependencies:
   image_gallery_saver: ^2.0.3
   animated_snack_bar: ^0.3.1
 
+  sliding_up_panel: ^2.0.0+1
+  custom_info_window: ^1.0.1
+
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -54,6 +57,7 @@ dependencies:
   firebase_core: ^2.19.0
   firebase_messaging: ^14.7.1
   flutter_local_notifications: ^16.1.0
+  provider: ^6.1.1
 
 dev_dependencies:
   flutter_test:

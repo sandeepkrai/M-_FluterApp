@@ -17,7 +17,14 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController _nameController = TextEditingController();
   TextEditingController _locationController = TextEditingController();
   TextEditingController _age = TextEditingController();
+  TextEditingController _isDisabled = TextEditingController();
+  TextEditingController _disabilityName = TextEditingController();
+  TextEditingController _disabilityCard = TextEditingController();
+  TextEditingController _isExServiceMan = TextEditingController();
+  TextEditingController _servicemaIdCard = TextEditingController();
   TextEditingController _industry = TextEditingController();
+  bool? _isServiceman = false;
+  bool? _isDisabledBool = false;
 
   Future<bool> signup() async {
     final username = _usernameController.text;
@@ -27,10 +34,15 @@ class _SignupScreenState extends State<SignupScreen> {
     final location = _locationController.text;
     final age = _age.text;
     final industry = _industry.text;
-
+    final isDisabled = _isDisabledBool;
+    final disabilityName = _disabilityName.text;
+    final disabilityCard = _disabilityCard.text;
+    final isExServiceMan = _isServiceman;
+    final servicemaIdCard = _servicemaIdCard.text;
+    print(isDisabled);
     var response = await http.post(
       Uri.parse("https://manipal-hackathon-2.onrender.com/api/user/register"),
-      body: jsonEncode(<String, String>{
+      body: jsonEncode(<String, dynamic>{
         'username': username.toString(),
         'email': email.toString(),
         'password': password.toString(),
@@ -38,6 +50,11 @@ class _SignupScreenState extends State<SignupScreen> {
         'resident_location': location.toString().toLowerCase(),
         'age': age.toString(),
         'industry': industry.toString().toLowerCase(),
+        'isDisabled': isDisabled,
+        'disabilityName': disabilityName.toString(),
+        'disabilityIdCard': disabilityCard.toString(),
+        'isExServiceman': isExServiceMan,
+        'servicemanIdCard': servicemaIdCard.toString(),
       }),
       headers: <String, String>{'Content-Type': 'application/json'},
     );
@@ -113,6 +130,116 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
               ),
               SizedBox(height: 20),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  // Existing form fields...
+
+                  SizedBox(height: 20),
+
+                  Row(
+                    children: <Widget>[
+                      Radio(
+                        value: false,
+                        groupValue: _isDisabledBool,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _isDisabledBool = value;
+                          });
+                        },
+                      ),
+                      Text('Not Disabled'),
+                    ],
+                  ),
+
+                  Row(
+                    children: <Widget>[
+                      Radio(
+                        value: true,
+                        groupValue: _isDisabledBool,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _isDisabledBool = value;
+                          });
+                        },
+                      ),
+                      Text('Is Disabled'),
+                    ],
+                  ),
+
+                  SizedBox(height: 20),
+                ],
+              ),
+              SizedBox(height: 20),
+              _isDisabledBool!
+                  ? TextFormField(
+                      controller: _disabilityName,
+                      decoration: InputDecoration(
+                        labelText: 'Disability Name',
+                      ),
+                    )
+                  : SizedBox(height: 0),
+              SizedBox(height: 20),
+              _isDisabledBool!
+                  ? TextFormField(
+                      controller: _disabilityCard,
+                      decoration: InputDecoration(
+                        labelText: 'Disability Card',
+                      ),
+                    )
+                  : SizedBox(height: 0),
+              SizedBox(height: 20),
+
+// ...
+
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  // Existing form fields...
+
+                  SizedBox(height: 20),
+
+                  Row(
+                    children: <Widget>[
+                      Radio(
+                        value: false,
+                        groupValue: _isServiceman,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _isServiceman = value;
+                          });
+                        },
+                      ),
+                      Text('Not a Serviceman'),
+                    ],
+                  ),
+
+                  Row(
+                    children: <Widget>[
+                      Radio(
+                        value: true,
+                        groupValue: _isServiceman,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            _isServiceman = value;
+                          });
+                        },
+                      ),
+                      Text('Is a Serviceman'),
+                    ],
+                  ),
+
+                  SizedBox(height: 20),
+                ],
+              ),
+              _isServiceman!
+                  ? TextFormField(
+                      controller: _servicemaIdCard,
+                      decoration: InputDecoration(
+                        labelText: 'Serviceman Id Card',
+                      ),
+                    )
+                  : SizedBox(height: 0),
               ElevatedButton(
                 onPressed: () async {
                   // Handle the sign-up logic here

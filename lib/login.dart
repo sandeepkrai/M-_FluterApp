@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:animated_snack_bar/animated_snack_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:groot/Models/user.dart';
 import 'package:groot/home_page.dart';
 import 'package:groot/homepage_component.dart';
 import 'package:groot/imageupload.dart';
@@ -21,8 +22,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   String? _currentAddress;
-  Position? _currentPosition;
-
+  
+Position? _currentPosition;
   Future<bool> _handleLocationPermission() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -104,6 +105,8 @@ class _LoginScreenState extends State<LoginScreen> {
     }
     return false;
   }
+
+  
 
   @override
   Widget build(BuildContext context) {

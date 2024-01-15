@@ -8,6 +8,7 @@ import 'package:groot/greenpoints.dart';
 import 'package:groot/greenway.dart';
 import 'package:groot/homepage_component.dart';
 import 'package:groot/map.dart';
+import 'package:groot/maps.dart';
 import 'package:intl/intl.dart';
 import 'bottom_navigation.dart';
 
@@ -24,18 +25,17 @@ class _MyHomePageState extends State<MyHomePage> {
   // get today day name
 
   void _onItemTapped(int index) async {
-    
     setState(() {
       _currentIndex = index;
     });
-  } 
+  }
 
   int _currentIndex = 0;
   static List<Widget> _widgetOptions = <Widget>[
     HomePageComponent(),
     ChallengesPage(),
     GreenPointsPage(),
-    MyApp(),
+    HelpPage(),
     CommunityForum(),
   ];
 
